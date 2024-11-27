@@ -96,22 +96,12 @@ module.exports = {
         ],
         pathGroups: [
           {
-            pattern: '{react*,react*/*}',
+            pattern: '{next*,next*/*,next*/*/*,react*,react*/*}',
             group: 'external',
             position: 'before',
           },
           {
-            pattern: '@constants/*',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '@components/*',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '{@pages,@pages/*}',
+            pattern: '@/components/*',
             group: 'internal',
             position: 'after',
           },
