@@ -6,6 +6,8 @@ import styled, { ThemeProvider } from 'styled-components';
 
 import StyledComponentsRegistry from '../../lib/registry';
 
+import Sidebar from './sidebar';
+
 import GlobalStyle from '@/styles/GlobalStyle';
 import theme from '@/styles/themes';
 
@@ -51,6 +53,7 @@ export default function LayoutContainer({ children }: { children: React.ReactNod
       <ThemeProvider theme={theme}>
         <Container>
           <Header />
+          <Sidebar />
           <Page>
             <h1>{makeTitle(pathname)}</h1>
             {children}
