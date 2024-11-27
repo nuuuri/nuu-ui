@@ -1,0 +1,19 @@
+{
+  "Funciontal Component": {
+    "prefix": "fc",
+    "body": [
+      "interface ${TM_FILENAME_BASE}Props {",
+      "  ${1}",
+      "}",
+      "",
+      "export default function ${TM_FILENAME_BASE}() {",
+      "    return (",
+      "        <div>",
+      "            ${2}",
+      "        </div>",
+      "    );",
+      "}",
+    ],
+    "description": "Functional Component",
+  },
+}
