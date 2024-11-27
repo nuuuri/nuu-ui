@@ -14,6 +14,8 @@
     "react-dom": "19.0.0-rc-66855b96-20241106"
   },
   "devDependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
     "@rushstack/eslint-config": "^4.1.0",
     "@rushstack/eslint-patch": "^1.10.4",
     "@types/eslint-plugin-jsx-a11y": "^6",
