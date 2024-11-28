@@ -37,14 +37,16 @@ const getButtonStyles = (
 
 export const Solid = styled.button<{ color: ButtonColor }>`
   ${({ theme, color }) => {
-    if (color === 'default') return getButtonStyles(theme, 'gray1200', 'gray800', 'gray1200');
-    else
-      return getButtonStyles(
-        theme,
-        getButtonColor(color, 600),
-        getButtonColor(color, 400),
-        getButtonColor(color, 700)
-      );
+    if (color === 'default') {
+      return getButtonStyles(theme, 'gray1200', 'gray800', 'gray1200');
+    }
+
+    return getButtonStyles(
+      theme,
+      getButtonColor(color, 600),
+      getButtonColor(color, 400),
+      getButtonColor(color, 700)
+    );
   }};
 
   color: ${({ theme }) => theme.colors.gray100};
@@ -52,7 +54,10 @@ export const Solid = styled.button<{ color: ButtonColor }>`
 
 export const Filled = styled.button<{ color: ButtonColor }>`
   ${({ theme, color }) => {
-    if (color === 'default') return getButtonStyles(theme, 'gray300', 'gray400', 'gray500');
+    if (color === 'default') {
+      return getButtonStyles(theme, 'gray300', 'gray400', 'gray500');
+    }
+
     return getButtonStyles(
       theme,
       getButtonColor(color, 200),
@@ -64,7 +69,7 @@ export const Filled = styled.button<{ color: ButtonColor }>`
 
 export const Outlined = styled.button<{ color: ButtonColor }>`
   ${({ theme, color }) => {
-    if (color === 'default')
+    if (color === 'default') {
       return getButtonStyles(
         theme,
         'gray500',
@@ -81,6 +86,8 @@ export const Outlined = styled.button<{ color: ButtonColor }>`
           }
         `
       );
+    }
+
     return getButtonStyles(
       theme,
       getButtonColor(color, 500),
