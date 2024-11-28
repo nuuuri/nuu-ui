@@ -161,4 +161,4 @@ export const colors = {
   lime1000: '#254000',
 };
 
-export type ColorsType = typeof colors;
+export type Colors = keyof typeof colors;
