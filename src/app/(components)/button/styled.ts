@@ -31,45 +31,51 @@ const getButtonStyles = (
   &:active {
     background: ${theme.colors[activeColor]};
   }
+  &:disabled {
+    border-color: ${theme.colors.gray500} !important;
+    background: ${theme.colors.gray300} !important;
+    color: ${theme.colors.gray600} !important;
+    cursor: not-allowed;
+  }
 
   ${additionalStyles}
 `;
 
-export const Solid = styled.button<{ color: ButtonColor }>`
-  ${({ theme, color }) => {
-    if (color === 'default') {
+export const Solid = styled.button<{ $color: ButtonColor }>`
+  ${({ theme, $color }) => {
+    if ($color === 'default') {
       return getButtonStyles(theme, 'gray1200', 'gray800', 'gray1200');
     }
 
     return getButtonStyles(
       theme,
-      getButtonColor(color, 600),
-      getButtonColor(color, 400),
-      getButtonColor(color, 700)
+      getButtonColor($color, 600),
+      getButtonColor($color, 400),
+      getButtonColor($color, 700)
     );
   }};
 
   color: ${({ theme }) => theme.colors.gray100};
 `;
 
-export const Filled = styled.button<{ color: ButtonColor }>`
-  ${({ theme, color }) => {
-    if (color === 'default') {
-      return getButtonStyles(theme, 'gray300', 'gray400', 'gray500');
+export const Filled = styled.button<{ $color: ButtonColor }>`
+  ${({ theme, $color }) => {
+    if ($color === 'default') {
+      return getButtonStyles(theme, 'gray400', 'gray500', 'gray600');
     }
 
     return getButtonStyles(
       theme,
-      getButtonColor(color, 200),
-      getButtonColor(color, 300),
-      getButtonColor(color, 400)
+      getButtonColor($color, 200),
+      getButtonColor($color, 300),
+      getButtonColor($color, 400)
     );
   }};
 `;
 
-export const Outlined = styled.button<{ color: ButtonColor }>`
-  ${({ theme, color }) => {
-    if (color === 'default') {
+export const Outlined = styled.button<{ $color: ButtonColor }>`
+  ${({ theme, $color }) => {
+    if ($color === 'default') {
       return getButtonStyles(
         theme,
         'gray500',
@@ -90,19 +96,19 @@ export const Outlined = styled.button<{ color: ButtonColor }>`
 
     return getButtonStyles(
       theme,
-      getButtonColor(color, 500),
-      getButtonColor(color, 300),
-      getButtonColor(color, 700),
+      getButtonColor($color, 500),
+      getButtonColor($color, 300),
+      getButtonColor($color, 700),
       css`
-        border: 1px solid ${theme.colors[getButtonColor(color, 500)]};
-        color: ${theme.colors[getButtonColor(color, 500)]};
+        border: 1px solid ${theme.colors[getButtonColor($color, 500)]};
+        color: ${theme.colors[getButtonColor($color, 500)]};
         &:hover {
-          border: 1px solid ${theme.colors[getButtonColor(color, 300)]};
-          color: ${theme.colors[getButtonColor(color, 300)]};
+          border: 1px solid ${theme.colors[getButtonColor($color, 300)]};
+          color: ${theme.colors[getButtonColor($color, 300)]};
         }
         &:active {
-          border: 1px solid ${theme.colors[getButtonColor(color, 300)]};
-          color: ${theme.colors[getButtonColor(color, 700)]};
+          border: 1px solid ${theme.colors[getButtonColor($color, 300)]};
+          color: ${theme.colors[getButtonColor($color, 700)]};
         }
       `
     );

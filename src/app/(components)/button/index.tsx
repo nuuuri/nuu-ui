@@ -21,7 +21,7 @@ export default function Button({
   style,
 }: ButtonProps) {
   const props = {
-    color: color,
+    $color: color,
     disabled: disabled,
     onClick: onClick,
     style: style,
