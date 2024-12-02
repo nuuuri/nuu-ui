@@ -16,6 +16,21 @@ export const RadioWrapper = styled.div`
   }
 `;
 
+export const RadioGroupWrapper = styled.fieldset`
+  ${flexbox('row', 'left', 'center')}
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  legend {
+    margin-bottom: 10px;
+    padding: 0;
+    color: ${({ theme }) => theme.colors.blue600};
+    font-weight: 600;
+    font-size: 18px;
+  }
+`;
+
 export const RadioButton = styled.input.attrs(() => ({
   type: 'radio',
 }))`
