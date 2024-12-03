@@ -29,7 +29,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:prettier/recommended',
   ],
 
   rules: {
@@ -113,6 +112,9 @@ module.exports = {
         },
       },
     ],
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
   },
 };

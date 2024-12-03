@@ -45,7 +45,10 @@ export default function DropdownPage() {
     {
       key: '4',
       label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.youtube.com/">
           go to youtube
         </a>
       ),
@@ -76,7 +79,11 @@ export default function DropdownPage() {
       <div>
         <Box>
           {placements.map((placement) => (
-            <Dropdown key={placement} items={dummyItems} placement={placement} arrow>
+            <Dropdown
+              key={placement}
+              items={dummyItems}
+              placement={placement}
+              arrow>
               <Button>{placement}</Button>
             </Dropdown>
           ))}

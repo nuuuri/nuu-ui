@@ -2,7 +2,10 @@ import styled, { css } from 'styled-components';
 
 import { DropdownPlacement } from './type';
 
-const getHorizontalStyle = (placement: DropdownPlacement, px: string = '0px') => {
+const getHorizontalStyle = (
+  placement: DropdownPlacement,
+  px: string = '0px'
+) => {
   // left
   if (placement.endsWith('Left')) {
     return css`
@@ -37,7 +40,12 @@ const getVerticalStyle = (arrow: boolean, placement: DropdownPlacement) => {
   `;
 };
 
-const getArrowStyle = (arrow: boolean, placement: DropdownPlacement, px: string, color: string) => {
+const getArrowStyle = (
+  arrow: boolean,
+  placement: DropdownPlacement,
+  px: string,
+  color: string
+) => {
   if (!arrow) {
     return css`
       display: none;
@@ -71,7 +79,10 @@ export const Container = styled.div`
   }
 `;
 
-export const Menu = styled.div<{ $arrow: boolean; $placement: DropdownPlacement }>`
+export const Menu = styled.div<{
+  $arrow: boolean;
+  $placement: DropdownPlacement;
+}>`
   position: absolute;
   min-width: 100px;
   width: max-content;

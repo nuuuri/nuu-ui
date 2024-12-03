@@ -38,13 +38,19 @@ const Page = styled.main`
   padding: 0 40px;
 `;
 
-export default function LayoutContainer({ children }: { children: React.ReactNode }) {
+export default function LayoutContainer({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const pathname = usePathname();
 
   const makeTitle = (fullPath: string) => {
     const path = fullPath.split('/')[1] || 'home';
 
-    return path.split('-').map((word) => word[0].toLocaleUpperCase() + word.slice(1));
+    return path
+      .split('-')
+      .map((word) => word[0].toLocaleUpperCase() + word.slice(1));
   };
 
   return (

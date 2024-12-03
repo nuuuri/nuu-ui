@@ -30,7 +30,9 @@ export default function Dropdown({
   );
 
   return (
-    <S.Container onMouseOver={() => setOpened(true)} onMouseLeave={() => setOpened(false)}>
+    <S.Container
+      onMouseOver={() => setOpened(true)}
+      onMouseLeave={() => setOpened(false)}>
       {children}
       {opened && (
         <S.Menu $arrow={arrow} $placement={placement}>

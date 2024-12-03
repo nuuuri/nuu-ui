@@ -1,4 +1,10 @@
-import { Children, FormEventHandler, isValidElement, ReactElement, useId } from 'react';
+import {
+  Children,
+  FormEventHandler,
+  isValidElement,
+  ReactElement,
+  useId,
+} from 'react';
 
 import * as S from './styled';
 import { RadioOption } from './type';
@@ -16,12 +22,24 @@ interface BaseRadioGroupProps {
 
 type RadioGroupProps = BaseRadioGroupProps &
   (
-    | { value?: undefined; onChange?: never }
-    | { value: string | number; onChange: FormEventHandler<HTMLFieldSetElement> }
+    | {
+        value?: undefined;
+        onChange?: never;
+      }
+    | {
+        value: string | number;
+        onChange: FormEventHandler<HTMLFieldSetElement>;
+      }
   ) &
   (
-    | { options: RadioOption[]; children?: never }
-    | { options?: never; children: ReactElement<RadioProps> | ReactElement<RadioProps>[] }
+    | {
+        options: RadioOption[];
+        children?: never;
+      }
+    | {
+        options?: never;
+        children: ReactElement<RadioProps> | ReactElement<RadioProps>[];
+      }
   );
 
 export default function Radio({ checked, children, name, value }: RadioProps) {
@@ -52,7 +70,9 @@ function RadioOptions({
       name={name}
       value={option.value || option.label}
       checked={
-        value === undefined ? value : String(option.value || option.label) === String(value)
+        value === undefined
+          ? value
+          : String(option.value || option.label) === String(value)
       }>
       {option.label}
     </Radio>
@@ -74,14 +94,21 @@ function RadioChildren({
           checked={
             value === undefined
               ? undefined
-              : String(child.props.value || child.props.children) === String(value)
+              : String(child.props.value || child.props.children) ===
+                String(value)
           }
         />
       )
   );
 }
 
-function RadioGroup({ children, legend, onChange, options, value }: RadioGroupProps) {
+function RadioGroup({
+  children,
+  legend,
+  onChange,
+  options,
+  value,
+}: RadioGroupProps) {
   const name = useId();
   const childrenProps = { name, value };
 
