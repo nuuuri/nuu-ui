@@ -12,6 +12,7 @@ import { RadioOption } from './type';
 interface RadioProps {
   children: string;
   checked?: boolean;
+  disabled?: boolean;
   name?: string;
   value?: string | number;
 }
@@ -42,14 +43,21 @@ type RadioGroupProps = BaseRadioGroupProps &
       }
   );
 
-export default function Radio({ checked, children, name, value }: RadioProps) {
+export default function Radio({
+  checked,
+  children,
+  disabled = false,
+  name,
+  value,
+}: RadioProps) {
   const id = useId();
 
   return (
-    <S.RadioWrapper>
+    <S.RadioWrapper $disabled={disabled}>
       <S.RadioButton
         id={id}
         name={name}
+        disabled={disabled}
         value={value || children}
         checked={checked}
         onChange={() => {}}

@@ -15,6 +15,9 @@ export default function RadioPage() {
     <div>
       <h3>default</h3>
       <Radio>Radio</Radio>
+      <Radio disabled checked>
+        Disabled
+      </Radio>
 
       <h3>radio group</h3>
       <Radio.Group value={selected} onChange={handleOnChange}>

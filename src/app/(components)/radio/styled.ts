@@ -2,15 +2,17 @@ import styled from 'styled-components';
 
 import { flexbox } from '@/styles/themes/flexbox';
 
-export const RadioWrapper = styled.div`
+export const RadioWrapper = styled.div<{ $disabled: boolean }>`
   ${flexbox('row', 'left', 'center')}
 
   * {
-    cursor: pointer;
+    cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
   }
 
   label {
     padding: 0 10px;
+    color: ${({ theme, $disabled }) =>
+      $disabled ? theme.colors.gray600 : theme.colors.gray1300};
     font-size: 14px;
     line-height: 1.5;
   }
@@ -56,6 +58,16 @@ export const RadioButton = styled.input.attrs(() => ({
       border-radius: 50%;
       background: ${({ theme }) => theme.colors.gray100};
       content: '';
+    }
+  }
+  &:disabled {
+    border: 1px solid ${({ theme }) => theme.colors.gray500};
+    background: ${({ theme }) => theme.colors.gray200};
+
+    &::before {
+      width: 8px;
+      height: 8px;
+      background: ${({ theme }) => theme.colors.gray600};
     }
   }
 `;
