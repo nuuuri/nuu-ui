@@ -1,11 +1,11 @@
 import styled, { css, DefaultTheme, RuleSet } from 'styled-components';
 
-import { ButtonColor, ButtonColorStyle } from './type';
+import { ButtonColorType, ButtonColorStyle } from './type';
 
 import { colors } from '@/styles/themes/colors';
 
 // getButtonColor('danger', 500) => red500
-const getButtonColor = (color: ButtonColor, weight: number) =>
+const getButtonColor = (color: ButtonColorType, weight: number) =>
   (ButtonColorStyle[color] + weight) as keyof typeof colors;
 
 const getButtonStyles = (
@@ -41,7 +41,7 @@ const getButtonStyles = (
   ${additionalStyles}
 `;
 
-export const Solid = styled.button<{ $color: ButtonColor }>`
+export const Solid = styled.button<{ $color: ButtonColorType }>`
   ${({ theme, $color }) => {
     if ($color === 'default') {
       return getButtonStyles(theme, 'gray1200', 'gray800', 'gray1200');
@@ -58,7 +58,7 @@ export const Solid = styled.button<{ $color: ButtonColor }>`
   color: ${({ theme }) => theme.colors.gray100};
 `;
 
-export const Filled = styled.button<{ $color: ButtonColor }>`
+export const Filled = styled.button<{ $color: ButtonColorType }>`
   ${({ theme, $color }) => {
     if ($color === 'default') {
       return getButtonStyles(theme, 'gray400', 'gray500', 'gray600');
@@ -73,7 +73,7 @@ export const Filled = styled.button<{ $color: ButtonColor }>`
   }};
 `;
 
-export const Outlined = styled.button<{ $color: ButtonColor }>`
+export const Outlined = styled.button<{ $color: ButtonColorType }>`
   ${({ theme, $color }) => {
     if ($color === 'default') {
       return getButtonStyles(

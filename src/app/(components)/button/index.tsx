@@ -1,11 +1,11 @@
 import { CSSProperties, MouseEventHandler } from 'react';
 
 import * as S from './styled';
-import { ButtonColor, ButtonVariant } from './type';
+import { ButtonColorType, ButtonVariantType } from './type';
 
 interface ButtonProps {
-  color?: ButtonColor;
-  variant?: ButtonVariant;
+  color?: ButtonColorType;
+  variant?: ButtonVariantType;
   disabled?: boolean;
   children?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;

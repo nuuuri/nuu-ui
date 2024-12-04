@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 
-import { DropdownPlacement } from './type';
+import { DropdownPlacementType } from './type';
 
 import Dropdown from '.';
 
@@ -19,7 +19,7 @@ const Button = styled.button`
 `;
 
 export default function DropdownPage() {
-  const placements: DropdownPlacement[] = [
+  const placements: DropdownPlacementType[] = [
     'bottomLeft',
     'bottom',
     'bottomRight',

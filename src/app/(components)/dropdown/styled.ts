@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
-import { DropdownPlacement } from './type';
+import { DropdownPlacementType } from './type';
 
 const getHorizontalStyle = (
-  placement: DropdownPlacement,
+  placement: DropdownPlacementType,
   px: string = '0px'
 ) => {
   // left
@@ -27,7 +27,7 @@ const getHorizontalStyle = (
   `;
 };
 
-const getVerticalStyle = (arrow: boolean, placement: DropdownPlacement) => {
+const getVerticalStyle = (arrow: boolean, placement: DropdownPlacementType) => {
   // top
   if (placement.startsWith('top'))
     return css`
@@ -42,7 +42,7 @@ const getVerticalStyle = (arrow: boolean, placement: DropdownPlacement) => {
 
 const getArrowStyle = (
   arrow: boolean,
-  placement: DropdownPlacement,
+  placement: DropdownPlacementType,
   px: string,
   color: string
 ) => {
@@ -81,7 +81,7 @@ export const Container = styled.div`
 
 export const Menu = styled.div<{
   $arrow: boolean;
-  $placement: DropdownPlacement;
+  $placement: DropdownPlacementType;
 }>`
   position: absolute;
   min-width: 100px;

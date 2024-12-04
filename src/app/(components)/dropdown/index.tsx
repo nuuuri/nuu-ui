@@ -1,13 +1,13 @@
 import { ReactNode, useCallback, useState } from 'react';
 
 import * as S from './styled';
-import { DropdownItem, DropdownPlacement } from './type';
+import { DropdownItem, DropdownPlacementType } from './type';
 
 interface DropdownProps {
   arrow?: boolean;
   children: ReactNode;
   items: DropdownItem[];
-  placement?: DropdownPlacement;
+  placement?: DropdownPlacementType;
 }
 
 export default function Dropdown({

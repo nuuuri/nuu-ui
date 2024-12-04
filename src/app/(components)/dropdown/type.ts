@@ -6,7 +6,7 @@ export interface DropdownItem {
   onClick?: () => void;
 }
 
-export type DropdownPlacement =
+export type DropdownPlacementType =
   | 'top'
   | 'topLeft'
   | 'topRight'

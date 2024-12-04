@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 
-import { ButtonColor, ButtonVariant } from './type';
+import { ButtonColorType, ButtonVariantType } from './type';
 
 import Button from '.';
 
@@ -18,8 +18,13 @@ const ButtonGroup = styled(Wrapper)`
 `;
 
 export default function ButtonPage() {
-  const colors: ButtonColor[] = ['default', 'primary', 'danger'];
-  const variants: ButtonVariant[] = ['solid', 'outlined', 'dashed', 'filled'];
+  const colors: ButtonColorType[] = ['default', 'primary', 'danger'];
+  const variants: ButtonVariantType[] = [
+    'solid',
+    'outlined',
+    'dashed',
+    'filled',
+  ];
   const disables: boolean[] = [false, true];
 
   return (
