@@ -15,7 +15,7 @@ export default function RadioPage() {
     <div>
       <h3>default</h3>
       <Radio>Radio</Radio>
-      <Radio disabled checked>
+      <Radio checked disabled>
         Disabled
       </Radio>
 

@@ -33,8 +33,8 @@ export default function ButtonPage() {
                 <Button
                   key={`${color}-${variant}-${disabled}`}
                   color={color}
-                  variant={variant}
                   disabled={disabled}
+                  variant={variant}
                   onClick={() => alert(`${color} ${variant} button clicked!`)}>
                   {variant}
                 </Button>

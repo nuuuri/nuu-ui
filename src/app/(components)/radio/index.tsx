@@ -55,11 +55,11 @@ export default function Radio({
   return (
     <S.RadioWrapper $disabled={disabled}>
       <S.RadioButton
+        checked={checked}
+        disabled={disabled}
         id={id}
         name={name}
-        disabled={disabled}
         value={value || children}
-        checked={checked}
         onChange={() => {}}
       />
       <label htmlFor={id}>{children}</label>
@@ -75,13 +75,13 @@ function RadioOptions({
   return options?.map((option) => (
     <Radio
       key={option.label}
-      name={name}
-      value={option.value || option.label}
       checked={
         value === undefined
           ? value
           : String(option.value || option.label) === String(value)
-      }>
+      }
+      name={name}
+      value={option.value || option.label}>
       {option.label}
     </Radio>
   ));
@@ -89,7 +89,6 @@ function RadioOptions({
 
 function RadioChildren({
   children,
-  name,
   value,
 }: Pick<RadioProps, 'name'> & Pick<RadioGroupProps, 'children' | 'value'>) {
   return Children.map(
@@ -98,7 +97,6 @@ function RadioChildren({
       isValidElement(child) && (
         <Radio
           {...child.props}
-          name={name}
           checked={
             value === undefined
               ? undefined
@@ -118,15 +116,16 @@ function RadioGroup({
   value,
 }: RadioGroupProps) {
   const name = useId();
-  const childrenProps = { name, value };
 
   return (
     <S.RadioGroupWrapper onChange={onChange}>
       {legend && <legend>{legend}:</legend>}
       {options ? (
-        <RadioOptions {...childrenProps} options={options} />
+        <RadioOptions name={name} options={options} value={value} />
       ) : (
-        <RadioChildren {...childrenProps}>{children}</RadioChildren>
+        <RadioChildren name={name} value={value}>
+          {children}
+        </RadioChildren>
       )}
     </S.RadioGroupWrapper>
   );

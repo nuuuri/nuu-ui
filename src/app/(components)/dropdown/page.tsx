@@ -46,9 +46,9 @@ export default function DropdownPage() {
       key: '4',
       label: (
         <a
-          target="_blank"
+          href="https://www.youtube.com/"
           rel="noopener noreferrer"
-          href="https://www.youtube.com/">
+          target="_blank">
           go to youtube
         </a>
       ),
@@ -81,9 +81,9 @@ export default function DropdownPage() {
           {placements.map((placement) => (
             <Dropdown
               key={placement}
+              arrow
               items={dummyItems}
-              placement={placement}
-              arrow>
+              placement={placement}>
               <Button>{placement}</Button>
             </Dropdown>
           ))}

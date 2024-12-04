@@ -112,6 +112,16 @@ module.exports = {
         },
       },
     ],
+    'react/jsx-sort-props': [
+      'warn',
+      {
+        noSortAlphabetically: false, // 알파벳 순으로 props 정렬
+        ignoreCase: true, // 대소문자 무시
+        callbacksLast: true, // callback은 가장 마지막에 선언
+        shorthandFirst: true, // 단축 props는 앞쪽에 선언
+        reservedFirst: true, // key, ref는 가장 먼저 선언
+      },
+    ],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
