@@ -67,47 +67,6 @@ export default function Radio({
   );
 }
 
-function RadioOptions({
-  options,
-  name,
-  value,
-}: Pick<RadioProps, 'name'> & Pick<RadioGroupProps, 'options' | 'value'>) {
-  return options?.map((option) => (
-    <Radio
-      key={option.label}
-      checked={
-        value === undefined
-          ? value
-          : String(option.value || option.label) === String(value)
-      }
-      name={name}
-      value={option.value || option.label}>
-      {option.label}
-    </Radio>
-  ));
-}
-
-function RadioChildren({
-  children,
-  value,
-}: Pick<RadioProps, 'name'> & Pick<RadioGroupProps, 'children' | 'value'>) {
-  return Children.map(
-    children,
-    (child) =>
-      isValidElement(child) && (
-        <Radio
-          {...child.props}
-          checked={
-            value === undefined
-              ? undefined
-              : String(child.props.value || child.props.children) ===
-                String(value)
-          }
-        />
-      )
-  );
-}
-
 function RadioGroup({
   children,
   legend,
@@ -117,16 +76,31 @@ function RadioGroup({
 }: RadioGroupProps) {
   const name = useId();
 
+  const optionList: Required<RadioOption>[] = options
+    ? options.map(({ label, value }) => ({ label, value: value || label }))
+    : Children.toArray(children)
+        .filter(isValidElement<RadioProps>)
+        .map(({ props: { children, value } }) => ({
+          label: children,
+          value: value || children,
+        }));
+
   return (
     <S.RadioGroupWrapper onChange={onChange}>
       {legend && <legend>{legend}:</legend>}
-      {options ? (
-        <RadioOptions name={name} options={options} value={value} />
-      ) : (
-        <RadioChildren name={name} value={value}>
-          {children}
-        </RadioChildren>
-      )}
+      {optionList.map((option) => (
+        <Radio
+          key={option.label}
+          checked={
+            value === undefined
+              ? undefined
+              : String(option.value) === String(value)
+          }
+          name={name}
+          value={option.value}>
+          {option.label}
+        </Radio>
+      ))}
     </S.RadioGroupWrapper>
   );
 }
