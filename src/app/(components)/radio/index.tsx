@@ -91,11 +91,7 @@ function RadioGroup({
       {optionList.map((option) => (
         <Radio
           key={option.label}
-          checked={
-            value === undefined
-              ? undefined
-              : String(option.value) === String(value)
-          }
+          checked={value === undefined ? undefined : option.value === value}
           name={name}
           value={option.value}>
           {option.label}

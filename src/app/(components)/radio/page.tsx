@@ -5,10 +5,10 @@ import { FormEvent, useState } from 'react';
 import Radio from '.';
 
 export default function RadioPage() {
-  const [selected, setSelected] = useState('3');
+  const [selected, setSelected] = useState(3);
 
   const handleOnChange = (e: FormEvent<HTMLFieldSetElement>) => {
-    setSelected((e.target as HTMLInputElement).value);
+    setSelected(+(e.target as HTMLInputElement).value);
   };
 
   return (
