@@ -21,6 +21,11 @@ interface BaseRadioGroupProps {
   legend?: string;
 }
 
+/* discriminated union */
+/**
+ * `options`와 `children` 중 반드시 **하나만** 존재해야 함.
+ * 둘 다 존재하거나 둘 다 존재하는 경우는 허용하지 않음.
+ */
 type RadioGroupOptionProps =
   | {
       options: RadioOption[];
@@ -31,6 +36,10 @@ type RadioGroupOptionProps =
       children: ReactElement<RadioProps> | ReactElement<RadioProps>[];
     };
 
+/**
+ * `value`와 `onChange`가 반드시 **둘 다** 존재하거나 존재하지 않아야 함.
+ * 하나만 존재하는 경우는 허용하지 않음.
+ */
 type RadioGroupValueProps =
   | {
       value?: undefined;
