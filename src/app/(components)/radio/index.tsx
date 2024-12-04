@@ -21,27 +21,29 @@ interface BaseRadioGroupProps {
   legend?: string;
 }
 
+type RadioGroupOptionProps =
+  | {
+      options: RadioOption[];
+      children?: never;
+    }
+  | {
+      options?: never;
+      children: ReactElement<RadioProps> | ReactElement<RadioProps>[];
+    };
+
+type RadioGroupValueProps =
+  | {
+      value?: undefined;
+      onChange?: never;
+    }
+  | {
+      value: string | number;
+      onChange: FormEventHandler<HTMLFieldSetElement>;
+    };
+
 type RadioGroupProps = BaseRadioGroupProps &
-  (
-    | {
-        value?: undefined;
-        onChange?: never;
-      }
-    | {
-        value: string | number;
-        onChange: FormEventHandler<HTMLFieldSetElement>;
-      }
-  ) &
-  (
-    | {
-        options: RadioOption[];
-        children?: never;
-      }
-    | {
-        options?: never;
-        children: ReactElement<RadioProps> | ReactElement<RadioProps>[];
-      }
-  );
+  RadioGroupOptionProps &
+  RadioGroupValueProps;
 
 export default function Radio({
   checked,
