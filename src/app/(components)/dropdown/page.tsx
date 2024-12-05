@@ -9,7 +9,7 @@ import Dropdown from '.';
 import { flexbox } from '@/styles/themes/flexbox';
 
 const Box = styled.div`
-  ${flexbox('row', 'left')}
+  ${flexbox('row', 'flex-start', 'center')}
   gap: 5px;
 `;
 

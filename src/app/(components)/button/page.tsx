@@ -9,7 +9,7 @@ import Button from '.';
 import { flexbox } from '@/styles/themes/flexbox';
 
 const Wrapper = styled.div`
-  ${flexbox('column', 'center', 'left')}
+  ${flexbox('column', 'center', 'flex-start')}
   gap: 5px;
 `;
 
