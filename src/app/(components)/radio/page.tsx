@@ -1,15 +1,11 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 
 import Radio from '.';
 
 export default function RadioPage() {
-  const [selected, setSelected] = useState(3);
-
-  const handleOnChange = (e: FormEvent<HTMLFieldSetElement>) => {
-    setSelected(+(e.target as HTMLInputElement).value);
-  };
+  const [selected, setSelected] = useState<string | number>(3);
 
   return (
     <div>
@@ -20,7 +16,7 @@ export default function RadioPage() {
       </Radio>
 
       <h3>radio group</h3>
-      <Radio.Group value={selected} onChange={handleOnChange}>
+      <Radio.Group value={selected} onChange={(value) => setSelected(value)}>
         <Radio value={1}>Option A</Radio>
         <Radio value={2}>Option B</Radio>
         <Radio value={3}>Option C</Radio>
@@ -39,6 +35,13 @@ export default function RadioPage() {
 
       <h3>with legend</h3>
       <Radio.Group legend="Fruits">
+        <Radio value={1}>Apple</Radio>
+        <Radio value={2}>Banana</Radio>
+        <Radio value={3}>Orange</Radio>
+      </Radio.Group>
+
+      <h3>button style</h3>
+      <Radio.Group optionStyle="button">
         <Radio value={1}>Apple</Radio>
         <Radio value={2}>Banana</Radio>
         <Radio value={3}>Orange</Radio>

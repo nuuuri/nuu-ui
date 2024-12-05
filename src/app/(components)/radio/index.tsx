@@ -1,19 +1,36 @@
 import {
   Children,
-  FormEventHandler,
   isValidElement,
   ReactElement,
+  useCallback,
+  useEffect,
   useId,
+  useState,
 } from 'react';
 
 import * as S from './styled';
-import { RadioOption } from './type';
+import {
+  RadioButtonStyleType,
+  RadioOption,
+  RadioOptionStyleType,
+} from './type';
+
+type RadioStyleProps =
+  | {
+      optionStyle?: Extract<RadioOptionStyleType, 'radio'>;
+      buttonStyle?: never;
+    }
+  | {
+      optionStyle: Extract<RadioOptionStyleType, 'button'>;
+      buttonStyle?: RadioButtonStyleType;
+    };
 
 interface RadioProps {
   children: string;
   checked?: boolean;
   disabled?: boolean;
   name?: string;
+  onChange?: (val: string | number) => void;
   value?: string | number;
 }
 
@@ -47,26 +64,49 @@ type RadioGroupValueProps =
     }
   | {
       value: string | number;
-      onChange: FormEventHandler<HTMLFieldSetElement>;
+      onChange: (val: string | number) => void;
     };
 
 type RadioGroupProps = BaseRadioGroupProps &
   RadioGroupOptionProps &
-  RadioGroupValueProps;
+  RadioGroupValueProps &
+  RadioStyleProps;
 
 export default function Radio({
+  buttonStyle,
   checked,
   children,
   disabled = false,
   name,
+  onChange,
+  optionStyle,
   value,
-}: RadioProps) {
+}: RadioProps & RadioStyleProps) {
   const id = useId();
 
+  const handleClickRadio = useCallback(
+    (e: any) => {
+      e.preventDefault();
+
+      if (onChange) {
+        onChange(value || children);
+        console.log('change selected');
+      }
+    },
+    [value, children, onChange]
+  );
+
   return (
-    <S.RadioWrapper $disabled={disabled}>
-      <S.RadioButton
-        checked={checked}
+    <S.RadioWrapper
+      $active={!!checked}
+      $buttonStyle={buttonStyle}
+      $color="default"
+      $disabled={disabled}
+      $optionStyle={optionStyle}
+      onClick={handleClickRadio}>
+      <S.RadioInput
+        $active={!!checked}
+        $optionStyle={optionStyle}
         disabled={disabled}
         id={id}
         name={name}
@@ -79,12 +119,15 @@ export default function Radio({
 }
 
 function RadioGroup({
+  buttonStyle,
   children,
   legend,
   onChange,
   options,
+  optionStyle,
   value,
 }: RadioGroupProps) {
+  const [selected, setSelected] = useState(value);
   const name = useId();
 
   const optionList: Required<RadioOption>[] = options
@@ -96,18 +139,39 @@ function RadioGroup({
           value: value || children,
         }));
 
+  useEffect(() => {
+    if (selected && onChange) {
+      onChange(selected);
+    }
+  }, [selected, onChange]);
+
   return (
-    <S.RadioGroupWrapper onChange={onChange}>
+    <S.RadioGroupWrapper>
       {legend && <legend>{legend}:</legend>}
-      {optionList.map((option) => (
-        <Radio
-          key={option.label}
-          checked={value === undefined ? undefined : option.value === value}
-          name={name}
-          value={option.value}>
-          {option.label}
-        </Radio>
-      ))}
+      {optionList.map((option) =>
+        optionStyle === 'button' ? (
+          <Radio
+            key={option.label}
+            buttonStyle={buttonStyle}
+            checked={option.value === selected}
+            name={name}
+            optionStyle="button"
+            value={option.value}
+            onChange={setSelected}>
+            {option.label}
+          </Radio>
+        ) : (
+          <Radio
+            key={option.label}
+            checked={option.value === selected}
+            name={name}
+            optionStyle={optionStyle}
+            value={option.value}
+            onChange={setSelected}>
+            {option.label}
+          </Radio>
+        )
+      )}
     </S.RadioGroupWrapper>
   );
 }
