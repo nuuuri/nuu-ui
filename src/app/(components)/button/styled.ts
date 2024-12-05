@@ -1,15 +1,14 @@
-import styled, { css, DefaultTheme, RuleSet } from 'styled-components';
+import styled, { css, RuleSet } from 'styled-components';
 
 import { ButtonColorType, ButtonColorStyle } from './type';
 
 import { colors } from '@/styles/themes/colors';
 
 // getButtonColor('danger', 500) => red500
-const getButtonColor = (color: ButtonColorType, weight: number) =>
+export const getButtonColor = (color: ButtonColorType, weight: number) =>
   (ButtonColorStyle[color] + weight) as keyof typeof colors;
 
-const getButtonStyles = (
-  theme: DefaultTheme,
+export const getButtonStyles = (
   baseColor: keyof typeof colors,
   hoverColor: keyof typeof colors,
   activeColor: keyof typeof colors,
@@ -22,33 +21,34 @@ const getButtonStyles = (
   cursor: pointer;
 
   // custom styles
-  border: 1px solid ${theme.colors[baseColor]};
-  background: ${theme.colors[baseColor]};
+  ${({ theme }) => css`
+    border: 1px solid ${theme.colors[baseColor]};
+    background: ${theme.colors[baseColor]};
 
-  &:hover {
-    background: ${theme.colors[hoverColor]};
-  }
-  &:active {
-    background: ${theme.colors[activeColor]};
-  }
-  &:disabled {
-    border-color: ${theme.colors.gray500} !important;
-    background: ${theme.colors.gray300} !important;
-    color: ${theme.colors.gray600} !important;
-    cursor: not-allowed;
-  }
+    &:hover {
+      background: ${theme.colors[hoverColor]};
+    }
+    &:active {
+      background: ${theme.colors[activeColor]};
+    }
+    &:disabled {
+      border-color: ${theme.colors.gray500} !important;
+      background: ${theme.colors.gray300} !important;
+      color: ${theme.colors.gray600} !important;
+      cursor: not-allowed;
+    }
+  `}
 
   ${additionalStyles}
 `;
 
 export const Solid = styled.button<{ $color: ButtonColorType }>`
-  ${({ theme, $color }) => {
+  ${({ $color }) => {
     if ($color === 'default') {
-      return getButtonStyles(theme, 'gray1200', 'gray800', 'gray1200');
+      return getButtonStyles('gray1200', 'gray800', 'gray1200');
     }
 
     return getButtonStyles(
-      theme,
       getButtonColor($color, 600),
       getButtonColor($color, 400),
       getButtonColor($color, 700)
@@ -59,13 +59,12 @@ export const Solid = styled.button<{ $color: ButtonColorType }>`
 `;
 
 export const Filled = styled.button<{ $color: ButtonColorType }>`
-  ${({ theme, $color }) => {
+  ${({ $color }) => {
     if ($color === 'default') {
-      return getButtonStyles(theme, 'gray400', 'gray500', 'gray600');
+      return getButtonStyles('gray400', 'gray500', 'gray600');
     }
 
     return getButtonStyles(
-      theme,
       getButtonColor($color, 200),
       getButtonColor($color, 300),
       getButtonColor($color, 400)
@@ -77,7 +76,6 @@ export const Outlined = styled.button<{ $color: ButtonColorType }>`
   ${({ theme, $color }) => {
     if ($color === 'default') {
       return getButtonStyles(
-        theme,
         'gray500',
         'gray500',
         'gray700',
@@ -95,7 +93,6 @@ export const Outlined = styled.button<{ $color: ButtonColorType }>`
     }
 
     return getButtonStyles(
-      theme,
       getButtonColor($color, 500),
       getButtonColor($color, 300),
       getButtonColor($color, 700),
